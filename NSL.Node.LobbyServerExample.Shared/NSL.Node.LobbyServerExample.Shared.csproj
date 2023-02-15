@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<TargetFramework>net7.0</TargetFramework>
-		<Configurations>Debug;Release;UnityDebug;Unity</Configurations>
+		<Configurations>Debug;Release;UnityDebug;Unity;DebugExamples;ReleaseRoomServer</Configurations>
 		
 		<Version>$(VersionSuffix)</Version>
 		<Authors>Relife87</Authors>
@@ -10,6 +10,10 @@
 
 	<PropertyGroup Condition="'$(Configuration)'=='Debug'">
 		<PackageId>$(MSBuildProjectName)_Debug</PackageId>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)'=='DebugExamples'">
+	  <PackageId>$(MSBuildProjectName)_Debug</PackageId>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)'=='UnityDebug'">

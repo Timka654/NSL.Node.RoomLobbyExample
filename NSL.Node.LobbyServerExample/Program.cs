@@ -1,10 +1,11 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using NSL.BuilderExtensions.SocketCore;
+﻿using NSL.BuilderExtensions.SocketCore;
 using NSL.BuilderExtensions.WebSocketsServer.AspNet;
-using NSL.Node.BridgeLobbyClient;
 using NSL.Node.BridgeLobbyClient.AspNetCore;
+using NSL.Node.BridgeServer;
+using NSL.Node.BridgeServer.RS;
 using NSL.Node.LobbyServerExample.Managers;
 using NSL.Node.LobbyServerExample.Shared.Models;
+using NSL.Node.RoomServer;
 
 namespace NSL.Node.LobbyServerExample
 {
@@ -12,6 +13,9 @@ namespace NSL.Node.LobbyServerExample
     {
         static async Task Main(string[] args)
         {
+            BridgeServerStartupEntry.CreateDefault().Run();
+            RoomServerStartupEntry.CreateDefault().Run();
+
             var builder = WebApplication.CreateBuilder(args);
 
             builder.Services.AddSingleton<LobbyManager>();
