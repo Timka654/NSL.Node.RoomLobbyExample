@@ -16,16 +16,13 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\NSL.Node.BridgeLobbyClient.AspNetCore\NSL.Node.BridgeLobbyClient.AspNetCore.csproj" />
-		<ProjectReference Include="..\..\NSL.Node.BridgeLobbyClient\NSL.Node.BridgeLobbyClient.csproj" />
-		<ProjectReference Include="..\..\NSL.Node.BridgeServer\NSL.Node.BridgeServer.csproj" />
-		<ProjectReference Include="..\..\NSL.Node.RoomServer\NSL.Node.RoomServer.csproj" />
 		<ProjectReference Include="..\NSL.Node.LobbyServerExample.Shared\NSL.Node.LobbyServerExample.Shared.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="7.0.2"></PackageReference>
 		<PackageReference Include="NSL.BuilderExtensions.WebSocketsServer.AspNet" Version="2023.2.5.1332" />
+		<PackageReference Include="NSL.Node.BridgeLobbyClient.AspNetCore" Version="2023.2.15.1949" />
 	</ItemGroup>
 
 </Project>
