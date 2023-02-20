@@ -49,9 +49,11 @@ namespace NSL.Node.LobbyServerExample
 
             app.UseRouting();
 
-            app.RunBridgeLobbyClient(app.Services.GetRequiredService<LobbyManager>().BridgeValidateSessionAsync);
+            var lobbyManager = app.Services.GetRequiredService<LobbyManager>();
 
-            app.Run();
+            app.RunBridgeLobbyClient(lobbyManager.BridgeValidateSessionAsync, lobbyManager.BridgRoomStartupInfoAsync, lobbyManager.BridgFinishRoomAsync);
+
+            await app.RunAsync();
         }
     }
 }

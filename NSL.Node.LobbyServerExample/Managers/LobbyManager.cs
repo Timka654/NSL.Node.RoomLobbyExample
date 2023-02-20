@@ -1,5 +1,6 @@
 ﻿using NSL.BuilderExtensions.SocketCore;
 using NSL.BuilderExtensions.WebSocketsServer.AspNet;
+using NSL.Node.BridgeServer.Shared;
 using NSL.Node.LobbyServerExample.Shared.Enums;
 using NSL.Node.LobbyServerExample.Shared.Models;
 using NSL.SocketCore.Extensions.Buffer;
@@ -69,6 +70,8 @@ namespace NSL.Node.LobbyServerExample.Managers
 
         #endregion
 
+        #region Bridge
+
         internal Task<bool> BridgeValidateSessionAsync(Guid roomId, string sessionIdentity)
         {
             var splited = sessionIdentity.Split(':');
@@ -83,6 +86,26 @@ namespace NSL.Node.LobbyServerExample.Managers
 
             return Task.FromResult(false);
         }
+
+        internal Task<bool> BridgRoomStartupInfoAsync(Guid roomId, NodeRoomStartupInfo startupInfo)
+        {
+            if (processingRoomMap.TryGetValue(roomId, out var room))
+            {
+                startupInfo.SetRoomWaitReady(true);
+                startupInfo.SetRoomPlayerCount(room.MemberCount());
+
+                return Task.FromResult(true);
+            }
+
+            return Task.FromResult(false);
+        }
+
+        internal Task BridgFinishRoomAsync(Guid roomId, byte[] data)
+        {
+            return Task.CompletedTask;
+        }
+
+        #endregion
 
         #region PacketHandle
 
