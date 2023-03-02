@@ -2,18 +2,15 @@
 {
     public enum ClientReceivePacketEnum : ushort
     {
-        CreateRoomResult = 1,
+        Response = 1,
         NewRoomMessage,
-        ChangeTitleRoomInfo,
+        ChangeTitleRoomInfoMessage,
         ChangeRoomInfo,
         RoomMemberJoinMessage,
         RoomMemberLeaveMessage,
-        JoinRoomResult,
-        LeaveRoomResult,
         ChatMessage,
         NewUserIdentity,
         RoomStartedMessage,
-        RoomRemoveMessage,
-        GetRoomListResult
+        RoomRemoveMessage
     }
 }

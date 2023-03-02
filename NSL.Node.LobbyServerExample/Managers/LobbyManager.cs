@@ -111,7 +111,7 @@ namespace NSL.Node.LobbyServerExample.Managers
 
         private void GetRoomListRequestHandle(LobbyNetworkClientModel client, InputPacketBuffer data)
         {
-            var packet = OutputPacketBuffer.Create(ClientReceivePacketEnum.GetRoomListResult).WithWaitableAnswer(data);
+            var packet = OutputPacketBuffer.Create(ClientReceivePacketEnum.Response).WithWaitableAnswer(data);
 
             packet.WriteCollection(roomMap, item =>
             {
@@ -125,7 +125,7 @@ namespace NSL.Node.LobbyServerExample.Managers
 
         private void CreateRoomRequestHandle(LobbyNetworkClientModel client, InputPacketBuffer data)
         {
-            var packet = OutputPacketBuffer.Create(ClientReceivePacketEnum.CreateRoomResult)
+            var packet = OutputPacketBuffer.Create(ClientReceivePacketEnum.Response)
                 .WithWaitableAnswer(data);
 
             LobbyRoomInfoModel room = data.ReadJson16<LobbyRoomInfoModel>();
@@ -206,7 +206,7 @@ namespace NSL.Node.LobbyServerExample.Managers
 
         private void JoinRoomRequestHandle(LobbyNetworkClientModel client, InputPacketBuffer data)
         {
-            var packet = OutputPacketBuffer.Create(ClientReceivePacketEnum.JoinRoomResult).WithWaitableAnswer(data);
+            var packet = OutputPacketBuffer.Create(ClientReceivePacketEnum.Response).WithWaitableAnswer(data);
 
             var rid = data.ReadGuid();
 
@@ -240,7 +240,7 @@ namespace NSL.Node.LobbyServerExample.Managers
 
         private void LeaveRoomRequestHandle(LobbyNetworkClientModel client, InputPacketBuffer data)
         {
-            var packet = OutputPacketBuffer.Create(ClientReceivePacketEnum.LeaveRoomResult).WithWaitableAnswer(data);
+            var packet = OutputPacketBuffer.Create(ClientReceivePacketEnum.Response).WithWaitableAnswer(data);
 
             packet.WriteBool(true);
 
@@ -302,7 +302,7 @@ namespace NSL.Node.LobbyServerExample.Managers
 
         private void BroadcastChangeLobbyRoom(LobbyRoomInfoModel room)
         {
-            var packet = OutputPacketBuffer.Create(ClientReceivePacketEnum.ChangeTitleRoomInfo);
+            var packet = OutputPacketBuffer.Create(ClientReceivePacketEnum.ChangeTitleRoomInfoMessage);
 
             packet.WriteGuid(room.Id);
             packet.WriteInt32(room.MaxMembers);
